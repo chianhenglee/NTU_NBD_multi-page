@@ -200,7 +200,7 @@ def update_graph_choropleth(n_clicks, year, age, gender, figure):
     my_colorscale_nums = [i[0] for i in my_colorscale] # get the 0-1 values in each element from above
 
     data_values = [float(list(Dict_data.values())[i].Value) for i in range(len(Dict_data))]
-    data_values_n = data_values/np.max(data_values)
+    data_values_n = data_values/np.max(data_values)  # There is a possible bug in this. Make sure the values are defined and are not NaNs
     index_data_color = [np.argmin(np.abs(np.array(my_colorscale_nums)-k)) for k in data_values_n]
 
 
