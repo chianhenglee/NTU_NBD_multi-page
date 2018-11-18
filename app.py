@@ -1,22 +1,9 @@
 import dash
-import os
 
-from flask import send_from_directory
-
-
-app = dash.Dash()
+#app = dash.Dash()
+app = dash.Dash(__name__) # this is needed for adding local CSS files. (in assets folder)
 server = app.server
-app.config.supress_callback_exceptions = True
+app.config.suppress_callback_exceptions = True
 
-external_css = [
-    'https://codepen.io/chriddyp/pen/bWLwgP.css',
-    '/static/base.css'
-]
-for css in external_css:
-    app.css.append_css({"external_url": css})
+#server.secret_key = os.environ.get('secret_key', 'secret')
 
-
-@app.server.route('/static/<path:path>')
-def static_file(path):
-    static_folder = os.path.join(os.getcwd(), 'static')
-    return send_from_directory(static_folder, path)
