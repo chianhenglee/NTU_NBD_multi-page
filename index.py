@@ -5,6 +5,8 @@ import dash_html_components as html
 from app import app
 from apps import app1, app2
 
+server = app.server
+
 
 app.layout = html.Div([
     dcc.Location(id='url', refresh=False),
